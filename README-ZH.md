@@ -7,7 +7,9 @@
 只用一行命令，直接将Json文件转为Dart model类。
 
 
-#wbt修改说明：只是修改了依赖最新版本的dependencies。
+#wbt修改说明：
+1. 修改了依赖最新版本的dependencies。
+2. 自动产生的类名命名规则遵循大驼峰
 ## 安装
 
 ```yaml

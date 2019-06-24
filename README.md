@@ -6,7 +6,9 @@ Language: [English](README.md) | [中文简体](README-ZH.md)
 
 Gernerating Dart model class from Json file.
 
-#wbt update：just update dependencies lastest version.
+#wbt update：
+1. update dependencies lastest version.
+2. convert filename to classname, use camel-cast name。 
 ## Installing
 
 ```yaml
