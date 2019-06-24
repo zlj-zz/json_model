@@ -22,6 +22,34 @@ void main(List<String> args) {
   }
 }
 
+//wbtvc: 转换"_"后的字符为大写，并且删除"_"。也就是转换文件名为驼峰类名
+convName(String name) {
+  replace(lastpos) {
+    if (lastpos >= name.length) return -1;
+    int pos = name.indexOf("_", lastpos + 1);
+    // print("pos:$pos");
+    if (pos != -1) {
+      if (pos + 1 < name.length) {
+        name = name.substring(0, pos) +
+            name[pos + 1].toUpperCase() +
+            name.substring(pos + 2);
+        // print(name);
+      } else {
+        pos = -1;
+      }
+    }
+    return pos;
+  }
+
+  var n = 0;
+  while (n != -1) {
+    n = replace(n);
+  }
+  name = name.replaceAll("_", "");
+  // print("name:$name");
+  return name;
+}
+
 //遍历JSON目录生成模板
 bool walk(String srcDir, String distDir, String tag ) {
   if(srcDir.endsWith("/")) srcDir=srcDir.substring(0, srcDir.length-1);
@@ -71,6 +99,7 @@ bool walk(String srcDir, String distDir, String tag ) {
       String  className=name[0].toUpperCase()+name.substring(1);
       var dist=format(tpl,[name,className,className,attrs.toString(),
       className,className,className]);
+      className = convName(className);//wbtvc: 转换文件名为驼峰类名
       var _import=set.join(";\r\n");
       _import+=_import.isEmpty?"":";";
       dist=dist.replaceFirst("%t",_import );
