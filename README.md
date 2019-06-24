@@ -6,7 +6,7 @@ Language: [English](README.md) | [中文简体](README-ZH.md)
 
 Gernerating Dart model class from Json file.
 
-#wbt修改说明：只是修改了依赖最新版本的json_serializable和build_runner
+#wbt update：just update dependencies lastest version.
 ## Installing
 
 ```yaml
