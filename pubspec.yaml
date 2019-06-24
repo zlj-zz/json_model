@@ -15,9 +15,15 @@ dependencies:
   io: ^0.3.0
   build_resolvers: ^1.0.0
   build_runner_core: ^3.0.0
-  build_runner: ^1.0.0
-  json_annotation: ^2.2.0
-  json_serializable: ^2.0.0
+  # build_runner: ^1.0.0
+  # json_annotation: ^2.2.0
+  # json_serializable: ^2.0.0
+
+  #wbt update
+  json_annotation: ^2.4.0 #官方json序列化
+  build_runner: ^1.6.0 #json序列化依赖
+  json_serializable: ^3.0.0 #json序列化依赖
+
   path: ^1.6.2
 dev_dependencies:
   test: ^1.5.1
