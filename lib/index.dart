@@ -25,13 +25,13 @@ convName(String name) {
   replace(lastpos) {
     if (lastpos >= name.length) return -1;
     int pos = name.indexOf("_", lastpos + 1);
-    print("pos:$pos");
+    // print("pos:$pos");
     if (pos != -1) {
       if (pos + 1 < name.length) {
         name = name.substring(0, pos) +
             name[pos + 1].toUpperCase() +
             name.substring(pos + 2);
-        print(name);
+        // print(name);
       } else {
         pos = -1;
       }
@@ -44,7 +44,8 @@ convName(String name) {
     n = replace(n);
   }
   name = name.replaceAll("_", "");
-  print("name:$name");
+  // print("name:$name");
+  return name;
 }
 
 //遍历JSON目录生成模板
