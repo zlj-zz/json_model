@@ -12,7 +12,9 @@
 
 ```yaml
 dev_dependencies: 
-  json_model: #最新版本
+  json_model:
+    git: 
+      url: "https://github.com/wbtvc/json_model.git"
   build_runner: ^1.6.0
   json_serializable: ^3.0.0
 ```

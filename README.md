@@ -11,7 +11,9 @@ Gernerating Dart model class from Json file.
 
 ```yaml
 dev_dependencies:
-  json_model: #latest version
+  json_model:
+    git: 
+      url: "https://github.com/wbtvc/json_model.git"
   build_runner: ^1.6.0
   json_serializable: ^3.0.0
 ```
