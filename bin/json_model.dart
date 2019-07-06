@@ -158,17 +158,40 @@ String getType(v, Set<String> set, String current, tag) {
   } else if (v is String) {
     //处理特殊标志
     if (v.startsWith("$tag[]")) {
-      var type = changeFirstChar(v.substring(3), false);
-      if (type.toLowerCase() != current && !isBuiltInType(type)) {
-        set.add('import "$type.dart"');
+      //wbt:处理$[]引用类数组，
+      var n = v.indexOf("|");
+      if (n != -1) {//wbt: 修改版必须在json中添加“|”符并且后面加真正引用的文件名
+        var type = changeFirstChar(v.substring(3, n), false); //wbt:将首字母改为小写
+        print("wbttest:$type, $n, $v");
+        if (type.toLowerCase() != current && !isBuiltInType(type)) {
+          var f = v.substring(n+1); //wbt：直接取文件名
+          set.add('import "$f.dart"');
+        }
+        return "List<${changeFirstChar(type)}>"; //wbt: 强制首字母大写
+      } else {//wbt: 这里为原版，不支持下划线文件名
+        var type = changeFirstChar(v.substring(3), false); //wbt:将首字母改为小写
+        if (type.toLowerCase() != current && !isBuiltInType(type)) {
+          set.add('import "$type.dart"'); //wbt: 小写首字母的类做为文件名
+        }
+        return "List<${changeFirstChar(type)}>"; //wbt: 强制首字母大写
       }
-      return "List<${changeFirstChar(type)}>";
     } else if (v.startsWith(tag)) {
-      var fileName = changeFirstChar(v.substring(1), false);
-      if (fileName.toLowerCase() != current) {
-        set.add('import "$fileName.dart"');
+      //wbt:引用类
+      var n = v.indexOf("|");
+      if (n != -1) {//wbt: 修改版必须在json中添加“|”符并且后面加真正引用的文件名
+        var type = changeFirstChar(v.substring(1, n), false); //wbt:将首字母改为小写
+        if (type.toLowerCase() != current) {
+          var f = v.substring(n+1); //wbt：直接取文件名
+          set.add('import "$f.dart"');
+        }
+        return changeFirstChar(type);
+      } else {//wbt: 这里为原版，不支持下划线文件名
+        var fileName = changeFirstChar(v.substring(1), false);
+        if (fileName.toLowerCase() != current) {
+          set.add('import "$fileName.dart"');
+        }
+        return changeFirstChar(fileName);
       }
-      return changeFirstChar(fileName);
     } else if (v.startsWith("@")) {
       return v;
     }
